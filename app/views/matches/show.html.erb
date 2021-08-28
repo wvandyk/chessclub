@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Winner:</strong>
+  <%= @match.winner.full_name %>
+</p>
+
+<p>
+  <strong>Winner previous rank:</strong>
+  <%= @match.winner_previous_rank %>
+</p>
+
+<p>
+  <strong>Loser:</strong>
+  <%= @match.loser.full_name %>
+</p>
+
+<p>
+  <strong>Loser previous rank:</strong>
+  <%= @match.loser_previous_rank %>
+</p>
+
+<%= link_to 'Back', matches_path %>

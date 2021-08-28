@@ -1,0 +1,27 @@
+<%= form_with(model: match) do |form| %>
+  <% if match.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(match.errors.count, "error") %> prohibited this match from being saved:</h2>
+
+      <ul>
+        <% match.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :winner_id %>
+    <%= form.collection_select :winner_id, Member.order(rank: :asc), :id, :rank_and_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :loser_id %>
+    <%= form.collection_select :loser_id, Member.order(rank: :asc), :id, :rank_and_name %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
