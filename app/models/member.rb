@@ -21,18 +21,14 @@ class Member < ApplicationRecord
   def rank_up
     return if self.rank == 1
     member = Member.find_by_rank(self.rank - 1)
-    self.rank -= 1
-    member.rank += 1
-    self.save
-    member.save
+    self.update_attribute(:rank, self.rank - 1)
+    member.update_attribute(:rank, member.rank + 1)
   end
 
   def rank_down
     return if self.rank == Member.all.count
     member = Member.find_by_rank(self.rank + 1)
-    self.rank += 1
-    member.rank -= 1
-    self.save
-    member.save
+    self.update_attribute(:rank, self.rank + 1)
+    member.update_attribute(:rank, member.rank - 1)
   end
 end
