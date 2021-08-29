@@ -13,6 +13,7 @@ class MatchesController < ApplicationController
   # GET /matches/new
   def new
     @match = Match.new
+    @members = Member.order(rank: :asc)
   end
 
   # GET /matches/1/edit
@@ -24,27 +25,14 @@ class MatchesController < ApplicationController
     @match = Match.new(match_params)
     @match.winner_previous_rank = @match.winner.rank
     @match.loser_previous_rank = @match.loser.rank
-
+    @members = Member.order(rank: :asc)
+ 
     respond_to do |format|
       if @match.save
-        @match.rerank
         format.html { redirect_to @match, notice: "Match was successfully created." }
         format.json { render :show, status: :created, location: @match }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @match.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /matches/1 or /matches/1.json
-  def update
-    respond_to do |format|
-      if @match.update(match_params)
-        format.html { redirect_to @match, notice: "Match was successfully updated." }
-        format.json { render :show, status: :ok, location: @match }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @match.errors, status: :unprocessable_entity }
       end
     end
@@ -67,6 +55,6 @@ class MatchesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def match_params
-      params.require(:match).permit(:winner_id, :winner_previous_rank, :loser_id, :loser_previous_rank)
+      params.require(:match).permit(:winner_id, :winner_previous_rank, :loser_id, :loser_previous_rank, :draw)
     end
 end

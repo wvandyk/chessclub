@@ -9,6 +9,7 @@
       <th>Winner previous rank</th>
       <th>Loser</th>
       <th>Loser previous rank</th>
+      <th>Draw?</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -20,6 +21,7 @@
         <td><%= match.winner_previous_rank %></td>
         <td><%= match.loser.full_name %></td>
         <td><%= match.loser_previous_rank %></td>
+        <td><%= match.draw == true ? "Y" : "N" %>
         <td><%= link_to 'Show', match %></td>
         <td><%= link_to 'Destroy', match, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
@@ -29,4 +31,4 @@
 
 <br>
 
-<%= link_to 'New Match', new_match_path %>
+<%= link_to 'New Match', new_match_path %> | <%= link_to 'Members', members_path %>

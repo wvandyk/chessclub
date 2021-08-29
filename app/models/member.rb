@@ -14,6 +14,10 @@ class Member < ApplicationRecord
     "#{self.rank}. #{self.full_name}"
   end
 
+  def games_played
+    Match.where(["loser_id = ? OR winner_id = ?", self.id, self.id]).count
+  end
+
   def rank_up
     return if self.rank == 1
     member = Member.find_by_rank(self.rank - 1)

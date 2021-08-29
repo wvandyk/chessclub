@@ -5,12 +5,12 @@
 <table>
   <thead>
     <tr>
+      <th>Rank</th>
       <th>Name</th>
       <th>Surname</th>
       <th>Email</th>
       <th>Birthday</th>
       <th>Games played</th>
-      <th>Rank</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -18,12 +18,12 @@
   <tbody>
     <% @members.each do |member| %>
       <tr>
+        <td><%= member.rank %></td>
         <td><%= member.name %></td>
         <td><%= member.surname %></td>
         <td><%= member.email %></td>
         <td><%= member.birthday %></td>
         <td><%= member.games_played %></td>
-        <td><%= member.rank %></td>
         <td><%= link_to 'Show', member %></td>
         <td><%= link_to 'Edit', edit_member_path(member) %></td>
         <td><%= link_to 'Destroy', member, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -34,4 +34,4 @@
 
 <br>
 
-<%= link_to 'New Member', new_member_path %>
+<%= link_to 'New Member', new_member_path %> | <%= link_to 'Matches', matches_path %>

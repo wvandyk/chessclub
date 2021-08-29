@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_28_095226) do
+ActiveRecord::Schema.define(version: 2021_08_28_121039) do
 
   create_table "matches", force: :cascade do |t|
     t.integer "winner_id"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2021_08_28_095226) do
     t.integer "loser_previous_rank"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "draw", default: false
   end
 
   create_table "members", force: :cascade do |t|
